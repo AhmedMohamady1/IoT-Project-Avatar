@@ -1,5 +1,7 @@
-# Overview
+# Avatar
+![avatar photo](https://github.com/AhmedMohamady1/IoT-Project-Avatar/blob/main/Avatar.jpg)
 
+# Overview
 Our project aims to provide user with real-time data on various weather and safety sensors to help them plan out their day and keep them safe from household hazards by provide visual and sound warning in case of any danger.
 
 # Features
