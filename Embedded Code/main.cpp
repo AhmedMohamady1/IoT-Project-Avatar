@@ -3,6 +3,7 @@
 #include <PubSubClient.h>
 #include <WiFiClientSecure.h>
 #include <LiquidCrystal_I2C.h>
+#include <Arduino.h>
 
 // Include the sensors' classes from "Sensors" folder.
 #include "Sensors/RainSensor.h"
@@ -60,13 +61,13 @@ const char* buzzer_topic = "esp32/buzzer";
 int frequency = 1000;
 
 // WiFi credentials.
-const char* ssid = "WE_F321D4";
-const char* password = "m4602962@";
+const char* ssid = "yourSSID";
+const char* password = "yourPassword";
 
 // MQTT broker and credentials.
-const char* mqtt_server = "480ad17d3ac146b38c39effc11356cae.s1.eu.hivemq.cloud";
-const char* mqtt_user = "ESP32";
-const char* mqtt_password = "Esp322026@";
+const char* mqtt_server = "yourMQTTServer";
+const char* mqtt_user = "yourMQTTUser";
+const char* mqtt_password = "yourMQTTPassword";
 const int mqtt_port = 8883;
 
 // Root CA certificate.
@@ -171,6 +172,7 @@ void setup() {
   
   // Connect to the MQTT broker using the MQTTCLass
   mqtt.connect();
+  
 }
 
 // Variable to hold the page currently displayed on the screen.
@@ -196,7 +198,7 @@ void loop() {
   
   // Give the warning's "check" function the sensors' readings.
   warningSystem.check(gasValue, flameValue);
-
+  
   // Publish sensor data to MQTT topics.
   publishSensorData(mqtt.getClient(), temp_topic, temperature);
   publishSensorData(mqtt.getClient(), humidity_topic, humidity);
@@ -206,7 +208,7 @@ void loop() {
   publishSensorData(mqtt.getClient(), rain_topic, rainValue);
 
   lcd.clear();
-
+  
   // Display different sensor readings on an LCD screen based on the current page
   switch (currentPage) {
     case 0:
@@ -267,7 +269,6 @@ void loop() {
           lcd.print("Low UV");
       }
       break;
-
     case 5:
       lcd.setCursor(0, 0);
       lcd.print("6. Rain Level:");
